@@ -2,7 +2,7 @@
 
 ## Estado
 
-Aceita em 2026-11-03 para a base GraviCodex. A economia quantitativa ainda não foi medida.
+Aceita em 2026-11-03 para a base GraviCodex; complementada em 2026-11-25 por [0002 — Evolução Antigravity-first](0002-antigravity-first.md) (Codex em *stand-by*). A economia quantitativa ainda não foi medida.
 
 ## Problema
 

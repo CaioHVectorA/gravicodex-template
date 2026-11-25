@@ -1,13 +1,48 @@
-# Adaptar a um produto
+# Adaptar a base para um produto ou POC (Bootstrap)
 
-Use este procedimento ao iniciar um produto com a base; ele não é pré-requisito para editar o template.
+Procedimento em 4 fases alinhado à skill [`/bootstrap-poc`](../../.agents/skills/bootstrap-poc/SKILL.md). Use apenas ao transformar este template em um projeto real; não é necessário para manter o próprio template.
 
-1. Defina problema, usuário e primeiro resultado verificável. Aproveite o contexto já fornecido; pergunte somente pelas decisões ausentes que mudem o produto.
-2. Atualize [projeto](../context/project.md): escopo, restrições e estado real. Mantenha incógnitas explícitas.
-3. Escolha stack e estrutura a partir dessas necessidades. Não instale dependências apenas para preencher o template. Registre uma decisão se houver alternativas estruturais relevantes.
-4. Crie o menor fluxo funcional. Substitua o [mapa](../context/map.md) por componentes e caminhos que existam; adicione [contratos](../templates/component.md) apenas nas fronteiras que precisem deles.
-5. Execute instalação, build e testes aplicáveis; registre comandos comprovados em [comandos](../context/commands.md). Ajuste CI às verificações do produto e mantenha a checagem documental.
-6. Revise [AGENTS.md](../../AGENTS.md) para o projeto real. Mantenha a entrada curta; procedimentos específicos ficam nas rotas sob demanda.
-7. Remova exemplos sem utilidade, renomeie o README e ajuste o índice. Não preserve texto do template como se fosse uma decisão do produto.
+## Fase 1: Reconhecimento
 
-Pronto quando uma pessoa ou agente, em sessão nova, consegue localizar a entrada, executar o fluxo principal e validar uma mudança sem receber uma transcrição de contexto.
+1. Leia o primeiro prompt do usuário e identifique o domínio principal do projeto.
+2. Abra [o catálogo de perfis](../starters/README.md) e escolha **1 perfil principal** (ou no máximo **2 perfis combinados**, por exemplo `academic` + `iot`, `ai-data` + `backend-api` ou `web` + `backend-api`).
+3. Abra somente o(s) perfil(is) escolhido(s) em `docs/starters/`. Nunca leia os 10 perfis por rotina.
+
+## Fase 2: Entrevista de corte e escopo verificável
+
+1. Aproveite todo contexto já fornecido no prompt do usuário.
+2. Usando as perguntas de corte do perfil, pergunte **somente** pelas decisões ausentes que realmente mudam stack, fronteiras arquiteturais ou critério de pronto (use `/grill-me` se houver múltiplas incertezas de produto).
+3. Feche o menor recorte verificável da POC (1 fluxo ponta a ponta observável, dependências mínimas, estratégia real de teste/simulação e o que fica explicitamente fora desta entrega).
+
+## Fase 3: Atualização da base e menor fluxo funcional
+
+1. Substitua o estado de template nos documentos centrais:
+   - [projeto](../context/project.md): problema, usuário, escopo, restrições e estado real (removendo os marcadores de template para que [session_snapshot.py](../../scripts/session_snapshot.py) passe a reportar `PRODUTO`).
+   - [mapa](../context/map.md): apenas módulos, pastas e contratos que realmente existem.
+   - [comandos](../context/commands.md): comandos de instalação, execução, lint, build e teste comprovados na stack escolhida.
+   - [AGENTS.md](../../AGENTS.md) e [README.md](../../README.md): identidade, entrada curta (≤ 3 KiB) e instruções reais do produto.
+   - [CI](../../.github/workflows/docs.yml): adicionar ou criar workflow com build/testes reais do produto mantendo a checagem documental.
+2. Se o projeto for acadêmico (ou híbrido com `academic`), crie `docs/references/README.md` e `docs/references/references.bib` a partir de [bibliography-index.md](../templates/bibliography-index.md) e mantenha [references.md](../guides/references.md) e `.agents/rules/academic-references.md`.
+3. Implemente o menor fluxo funcional da POC e valide-o com evidência executável (incluindo mocks/simuladores quando faltar hardware ou serviço externo).
+
+## Fase 4: Faxina pós-reconhecimento
+
+Todo o material descartável de onboarding deve sair do repositório do produto assim que a POC estiver estruturada, reduzindo ruído e manutenção.
+
+| Ação | Caminhos | Condição |
+| --- | --- | --- |
+| **Sempre deletar** | `docs/starters/`, `docs/playbooks/bootstrap.md`, `.agents/skills/bootstrap-poc/` | Obrigatório ao concluir o bootstrap |
+| **Manter só se acadêmico** | `docs/guides/references.md`, `.agents/rules/academic-references.md`, `docs/templates/bibliography-index.md`, `docs/templates/source-note.md` | Deletar em projetos sem bibliografia formal |
+| **Substituir ou deletar** | `docs/research/sources.md`, `docs/decisions/0001-context-on-demand.md`, `docs/decisions/0002-antigravity-first.md` | Substituir por pesquisa/ADRs do produto ou remover se irrelevantes |
+| **Preservar e adaptar** | `AGENTS.md`, `docs/INDEX.md`, `docs/context/*`, `docs/guides/{antigravity,efficiency,markdown}.md`, `docs/playbooks/change.md`, `docs/tasks/`, `docs/templates/{task,decision,component}.md`, `.agents/{hooks.json,rules/{markdown-docs,verification}.md,skills/{audit-docs,session-handoff}/,agents/doc-auditor.md}`, `.geminiignore`, `scripts/*`, `tests/*` | Manter operacionais para o produto |
+
+### Fechamento obrigatório da faxina
+
+1. Pode [docs/INDEX.md](../INDEX.md) e [README.md](../../README.md) removendo qualquer link para arquivos deletados.
+2. Execute a validação completa para garantir **zero links quebrados** e customizações íntegras:
+
+```sh
+python3 scripts/check_docs.py && python3 -m unittest discover -s tests -v && git diff --check
+```
+
+3. Pronto quando uma sessão nova do Antigravity recebe o snapshot com `Modo: PRODUTO`, localiza o código e valida o fluxo principal sem transcrição prévia.

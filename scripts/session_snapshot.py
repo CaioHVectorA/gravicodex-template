@@ -169,7 +169,7 @@ def build_snapshot_message(root):
     root = Path(root).resolve()
     mode = detect_mode(root)
     mode_hint = (
-        "TEMPLATE (se o usuário pedir criação/POC de projeto, acione /bootstrap-poc antes de codar)"
+        "TEMPLATE (ao iniciar projeto/POC, acione /bootstrap-poc com entrevista estilo /grill-me para esculpir os Markdowns)"
         if mode == "TEMPLATE"
         else "PRODUTO"
     )

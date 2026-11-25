@@ -27,7 +27,7 @@ Documentação oficial consultada em **2026-11-25** ([fontes consultadas](../res
 | --- | --- | --- |
 | `@arquivo` / `@pasta` | Quando você já sabe o alvo | Envia caminho canônico sem gastar turno de busca |
 | `/plan` | Mudança multi-arquivo ou com risco | Separa exploração e plano revisável antes de editar |
-| `/grill-me` | Requisitos ambíguos na POC ou arquitetura | Entrevista curta para fechar decisões antes do código |
+| `/grill-me` | Início de projeto (`/grill-me /bootstrap-poc`) ou requisitos ambíguos | Entrevista 1 decisão por vez com opção recomendada para esculpir Markdowns sob medida; empilha com `/plan /grill-me` |
 | `/compact` | Entre marcos longos da mesma sessão | Resume histórico para reduzir degradação do contexto |
 | `/learn` | Após corrigir um padrão recorrente | Converte a lição em regra ou skill reutilizável |
 | `/swarm` | Tarefa ampla divisível em trilhas independentes | Coordena workers paralelos + verificador no mesmo quadro |

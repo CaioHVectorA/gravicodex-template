@@ -2,9 +2,9 @@
 
 Base **GraviCodex** otimizada para **Google Antigravity** (App/Desktop 2.0, CLI `agy` e IDE); suporte a Codex permanece em *stand-by* via este arquivo raiz. Responda em português; preserve nomes técnicos.
 
-## Gatilho de primeiro uso
+## Gatilho de primeiro uso (estilo grill-me)
 
-- Se [o perfil do projeto](docs/context/project.md) ainda estiver no estado de template (`TEMPLATE`) e o usuário pedir criação ou POC de um projeto, acione `/bootstrap-poc` ([playbook](docs/playbooks/bootstrap.md)) antes de escrever código de aplicação.
+- Se [o perfil do projeto](docs/context/project.md) estiver no estado `TEMPLATE` e o usuário pedir criação/POC de um projeto, acione `/bootstrap-poc` ([playbook](docs/playbooks/bootstrap.md)) antes de codar: conduza entrevista estilo `/grill-me` (uma decisão por vez com opção recomendada) para esculpir os Markdowns sob medida do projeto antes da implementação.
 
 ## Economia de contexto e turnos
 
@@ -16,7 +16,7 @@ Base **GraviCodex** otimizada para **Google Antigravity** (App/Desktop 2.0, CLI 
 
 ## Execução e respostas
 
-- Faça a menor mudança completa para o objetivo. Use `/plan` ou `/grill-me` apenas quando houver etapas dependentes, ambiguidade ou risco relevante; não crie registros para ajustes triviais.
+- Faça a menor mudança completa para o objetivo. Use `/plan` ou `/grill-me` quando houver etapas dependentes, ambiguidade ou risco relevante; não crie registros para ajustes triviais.
 - Prossiga com escolhas reversíveis bem fundamentadas; pergunte quando faltar decisão de produto que mude arquitetura ou escopo. Não invente requisitos, comandos ou métricas.
 - Valide o comportamento atingido. Neste template: `python3 scripts/check_docs.py && python3 -m unittest discover -s tests -v && git diff --check`.
 - Atualize apenas contratos, links e decisões afetados. Entre marcos longos, recomende `/compact`; transforme correções recorrentes em regra/skill com `/learn`. Para pausa ou troca de sessão, use `/session-handoff`.

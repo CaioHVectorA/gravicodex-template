@@ -1,0 +1,61 @@
+# FinOps padrão para Google Antigravity: exclui dependências, artefatos gerados,
+# lockfiles extensos e dados binários/brutos pesados de varreduras amplas.
+
+# Dependências e ambientes
+.venv/
+venv/
+env/
+node_modules/
+vendor/
+.pnp.*
+
+# Build, caches e artefatos gerados
+dist/
+build/
+out/
+target/
+coverage/
+.next/
+.nuxt/
+.turbo/
+.cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Lockfiles extensos (leia explicitamente apenas quando atualizar dependências)
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+Cargo.lock
+poetry.lock
+uv.lock
+
+# Dados brutos, dumps e binários pesados
+data/raw/
+datasets/
+*.sqlite
+*.db
+*.parquet
+*.feather
+*.h5
+*.hdf5
+*.pkl
+*.joblib
+*.onnx
+*.pt
+*.pth
+*.bin
+*.zip
+*.tar.gz
+*.tgz
+*.7z
+*.pdf
+*.mp4
+*.mov
+*.wav
+*.png
+*.jpg
+*.jpeg

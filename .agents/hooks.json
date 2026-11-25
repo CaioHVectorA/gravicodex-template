@@ -1,0 +1,12 @@
+{
+  "gravicodex-session-snapshot": {
+    "enabled": true,
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "python3 scripts/session_snapshot.py",
+        "timeout": 5
+      }
+    ]
+  }
+}
